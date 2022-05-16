@@ -1,7 +1,9 @@
+import List from "./pages/List/List";
+
 function App() {
   return (
     <div>
-      DASHBOARD ADMIN
+      <List />
     </div>
   );
 }
