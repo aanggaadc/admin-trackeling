@@ -1,0 +1,20 @@
+.navbar{
+    
+    .wrapper{
+        
+        
+        .items{
+            align-content: center;
+            justify-content: end;
+            display: flex;
+            height: 5vh;
+            background-color: cyan;
+            
+            .item{
+                cursor: pointer;
+                margin-left: 1vw;
+                margin-right: 1vw;
+            }
+        }
+    }
+}
