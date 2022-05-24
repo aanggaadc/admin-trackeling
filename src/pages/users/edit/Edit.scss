@@ -1,0 +1,23 @@
+.edit{
+    display: flex;
+    background-color: whitesmoke;
+    .editContainer{
+        background-color: snow;
+        flex: 10;
+
+        .form{
+
+            .title{
+                text-align: center;
+                margin-top: 20px;
+                font-size: 36px;
+            }
+
+            .input-row {
+                text-align: center;
+                margin-top: 20px;
+                font-size: 18px;
+            }
+        }
+    }
+}
