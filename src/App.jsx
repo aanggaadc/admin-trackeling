@@ -1,9 +1,16 @@
+import { Route, Routes } from "react-router-dom";
+import Home from "./pages/home/Home";
+
 function App() {
-  return (
-    <div>
-      DASHBOARD ADMIN
-    </div>
-  );
+	return (
+		<div>
+			<Routes>
+				<Route path="/">
+					<Route index element={<Home />} />
+				</Route>
+			</Routes>
+		</div>
+	);
 }
 
 export default App;
