@@ -23,7 +23,7 @@ function Sidebar() {
 							<span>Dashboard</span>
 						</li>
 					</Link>
-					<Link to="/" style={{ textDecoration: "none" }}>
+					<Link to="/trips" style={{ textDecoration: "none" }}>
 						<li>
 							<FaPlane className="icon" />
 							<span>Trips</span>
