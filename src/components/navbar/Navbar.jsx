@@ -8,7 +8,7 @@ function Navbar() {
 				<div className="wrapper">
 					<div className="items">
 						<div className="item">admin</div>
-						<div className="item">Logout</div>
+						<div className="item item-logout">Logout</div>
 					</div>
 				</div>
 			</div>

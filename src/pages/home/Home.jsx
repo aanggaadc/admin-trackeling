@@ -3,6 +3,9 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import Widget from "../../components/widget/Widget";
 import Navbar from "../../components/navbar/Navbar";
 import "./home.scss";
+import ChartGender from "../../components/chart_gender/ChartGender";
+import ChartTrips from "../../components/chart_trips/ChartTrips";
+import ChartInterest from "../../components/chart_interest/ChartInterest";
 
 function Home() {
 	return (
@@ -15,10 +18,11 @@ function Home() {
 						<Widget type="user" />
 						<Widget type="trips" />
 					</div>
-					{/* <div className="charts">
-						<Featured />
-						<Chart aspect={2 / 1} title="Last 6 Months" />
-					</div> */}
+					<div className="charts">
+						<ChartGender />
+						<ChartInterest />
+						<ChartTrips />
+					</div>
 				</div>
 			</div>
 		</div>

@@ -1,0 +1,14 @@
+.chart-gender {
+	box-shadow: 2px 4px 10px 1px rgba(14, 27, 77, 0.47);
+	color: gray;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 1rem;
+	border-radius: 10px;
+	flex: 1;
+
+	.title {
+		font-size: 1.5rem;
+	}
+}
