@@ -3,7 +3,22 @@
   width: 100%;
 
   .createTripContainer {
-    // background-color: lightcoral;
     flex: 6;
+
+    .formInput {
+      #createTripForm {
+        display: flex;
+        flex-direction: column;
+
+        .formGroup {
+          display: flex;
+          flex-direction: column;
+          width: 30%;
+          gap: 15px;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+    }
   }
 }
