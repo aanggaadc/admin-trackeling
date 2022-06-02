@@ -5,6 +5,7 @@ import Navbar from "../../components/navbar/Navbar";
 import "./home.scss";
 import ChartGender from "../../components/chart_gender/ChartGender";
 import ChartTrips from "../../components/chart_trips/ChartTrips";
+import ChartInterest from "../../components/chart_interest/ChartInterest";
 
 function Home() {
 	return (
@@ -19,6 +20,7 @@ function Home() {
 					</div>
 					<div className="charts">
 						<ChartGender />
+						<ChartInterest />
 						<ChartTrips />
 					</div>
 				</div>
