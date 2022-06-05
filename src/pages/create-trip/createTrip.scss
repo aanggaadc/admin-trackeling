@@ -6,6 +6,18 @@
     flex: 6;
 
     .formInput {
+      box-shadow: 2px 4px 10px 1px rgba(14, 27, 77, 0.47);
+      margin: 0 5rem;
+      padding: 1rem 0;
+      border-radius: 15px;
+      background-color: #fff;
+
+      .title {
+        font-size: 1.5rem;
+        text-align: center;
+        color: gray;
+      }
+
       #createTripForm {
         display: flex;
         flex-direction: column;
@@ -28,7 +40,7 @@
 
             &:focus {
               outline: none;
-              border-color: red !important;
+              border-color: #25abe3;
             }
           }
 

@@ -14,6 +14,7 @@ function CreateTrip() {
         <div className="createTripContainer">
           <Navbar />
           <div className="formInput">
+            <div className="title">CREATE TRIP</div>
             <Formik
               initialValues={{
                 destination: "",
@@ -43,7 +44,7 @@ function CreateTrip() {
                       id="destination"
                     ></input>
                     <label for="description">Description</label>
-                    <input
+                    <textarea
                       type="text"
                       onChange={(e) => {
                         setFieldValue("description", e.target);
@@ -51,7 +52,7 @@ function CreateTrip() {
                       className="formControl"
                       name="description"
                       id="description"
-                    ></input>
+                    ></textarea>
                     <label for="uploadImage">Upload Image</label>
 
                     <input
