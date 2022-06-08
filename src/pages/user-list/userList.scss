@@ -1,0 +1,14 @@
+.userList {
+  display: flex;
+  width: 100%;
+
+  .userListContainer {
+    flex: 6;
+  }
+
+  .title {
+    font-size: 1.5rem;
+    text-align: center;
+    color: gray;
+  }
+}

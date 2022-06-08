@@ -35,7 +35,7 @@ function Sidebar() {
               <span>Create Trip</span>
             </li>
           </Link>
-          <Link to="/" style={{ textDecoration: "none" }}>
+          <Link to="/user-list" style={{ textDecoration: "none" }}>
             <li>
               <BsFillPersonLinesFill className="icon" />
               <span>Users</span>
