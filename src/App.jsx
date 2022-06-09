@@ -3,6 +3,7 @@ import { useLayoutEffect } from "react";
 import Home from "./pages/home/Home";
 import CreateTrip from "./pages/create-trip/CreateTrip";
 import UserList from "./pages/user-list/UserList";
+import Trips from "./pages/trips/Trips";
 import { ToastContainer, toast } from "react-toastify";
 import Axios from "axios";
 
@@ -56,6 +57,8 @@ function App() {
 					<Route index element={<Home />} />
 					<Route path="create-trip" element={<CreateTrip />} />
 					<Route path="user-list" element={<UserList />} />
+					<Route path="trips" element={<Trips />}>
+				</Route>
 				</Route>
 			</Routes>
 			<ToastContainer />
