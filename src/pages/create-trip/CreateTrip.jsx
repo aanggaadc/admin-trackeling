@@ -3,9 +3,14 @@ import "./createTrip.scss";
 import Navbar from "../../components/navbar/Navbar";
 import Sidebar from "../../components/sidebar/Sidebar";
 import { Formik, Form } from "formik";
+import Axios from 'axios'
+import { API_URL } from '../../config/url'
+import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
 
 function CreateTrip() {
   const [file, setFile] = useState("");
+  const navigate = useNavigate()
 
   return (
     <div>
@@ -19,15 +24,26 @@ function CreateTrip() {
               initialValues={{
                 destination: "",
                 description: "",
-                file: "",
+                image: "",
               }}
               onSubmit={(values) => {
                 const formData = new FormData();
                 formData.append("destination", values.destination);
                 formData.append("description", values.description);
-                formData.append("file", values.file);
+                formData.append("image", values.image);
 
-                console.log(values);
+                Axios.post(`${API_URL}/recomendation/create`, formData)
+                  .then((response) => {
+                    console.log(response)
+                    toast.success("Trip Successfully created!!")
+                    navigate('/')
+                  }).catch((error) => {
+                    if (error.response) {
+                      toast.error(error.response.data.message)
+                    } else {
+                      toast.error("Cannot Connect to Server")
+                    }
+                  })
               }}
             >
               {({ handleSubmit, handleChange, setFieldValue }) => (
@@ -36,9 +52,7 @@ function CreateTrip() {
                     <label for="destination">Destination</label>
                     <input
                       type="text"
-                      onChange={(e) => {
-                        setFieldValue("destination", e.target);
-                      }}
+                      onChange={handleChange}
                       className="formControl"
                       name="destination"
                       id="destination"
@@ -46,9 +60,7 @@ function CreateTrip() {
                     <label for="description">Description</label>
                     <textarea
                       type="text"
-                      onChange={(e) => {
-                        setFieldValue("description", e.target);
-                      }}
+                      onChange={handleChange}
                       className="formControl"
                       name="description"
                       id="description"
@@ -58,10 +70,10 @@ function CreateTrip() {
                     <input
                       type="file"
                       accept="image/*"
-                      name="file"
+                      name="image"
                       onChange={(e) => {
                         setFile(e.target.files[0]);
-                        setFieldValue("file", e.currentTarget.files[0]);
+                        setFieldValue("image", e.currentTarget.files[0]);
                       }}
                     />
                     <div className="imgContainer">
