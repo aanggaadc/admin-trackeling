@@ -57,7 +57,7 @@ function App() {
         <Route path="/">
           <Route index element={<Home />} />
           <Route path="create-trip" element={<CreateTrip />} />
-          <Route path="user-list" element={<UserList />} />
+          <Route path="users" element={<UserList />} />
           <Route path="trips" element={<Trips />}>
           </Route>
         </Route>

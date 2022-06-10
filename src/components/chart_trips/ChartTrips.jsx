@@ -2,31 +2,31 @@ import React from "react";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts";
 import "./chartTrips.scss";
 
-function ChartTrips() {
+function ChartTrips({ dataTripMonth }) {
 	const data = [
 		{
 			name: "January",
-			trips: 5500,
+			trips: dataTripMonth.january,
 		},
 		{
 			name: "February",
-			trips: 2470,
+			trips: dataTripMonth.february,
 		},
 		{
 			name: "March",
-			trips: 2000,
+			trips: dataTripMonth.march,
 		},
 		{
 			name: "April",
-			trips: 2780,
+			trips: dataTripMonth.april,
 		},
 		{
 			name: "May",
-			trips: 3015,
+			trips: dataTripMonth.mei,
 		},
 		{
 			name: "June",
-			trips: 4100,
+			trips: dataTripMonth.juny,
 		},
 	];
 
