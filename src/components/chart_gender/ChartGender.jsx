@@ -50,6 +50,7 @@ function ChartGender({ totalMale, totalFemale }) {
 					outerRadius={150}
 					fill="#8884d8"
 					dataKey="value"
+					isAnimationActive={false}
 				>
 					{data.map((entry, index) => (
 						<Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
