@@ -2,10 +2,10 @@ import React from "react";
 import { PieChart, Pie, Cell } from "recharts";
 import "./chartGender.scss";
 
-function ChartGender() {
+function ChartGender({ totalMale, totalFemale }) {
 	const data = [
-		{ name: "Female", value: 400 },
-		{ name: "Male", value: 400 },
+		{ name: "Female", value: totalFemale },
+		{ name: "Male", value: totalMale },
 	];
 
 	const COLORS = ["#E56997", "#25abe3"];
@@ -50,6 +50,7 @@ function ChartGender() {
 					outerRadius={150}
 					fill="#8884d8"
 					dataKey="value"
+					isAnimationActive={false}
 				>
 					{data.map((entry, index) => (
 						<Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />

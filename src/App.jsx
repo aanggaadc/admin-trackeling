@@ -1,5 +1,5 @@
 import { Route, Routes, useSearchParams, useNavigate } from "react-router-dom";
-import { useLayoutEffect } from "react";
+import { useEffect } from "react";
 import Home from "./pages/home/Home";
 import 'react-toastify/dist/ReactToastify.css';
 import CreateTrip from "./pages/create-trip/CreateTrip";
@@ -47,7 +47,7 @@ function App() {
     }
   );
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     navigate("/");
   }, []);
 
@@ -57,7 +57,7 @@ function App() {
         <Route path="/">
           <Route index element={<Home />} />
           <Route path="create-trip" element={<CreateTrip />} />
-          <Route path="user-list" element={<UserList />} />
+          <Route path="users" element={<UserList />} />
           <Route path="trips" element={<Trips />}>
           </Route>
         </Route>

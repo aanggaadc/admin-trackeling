@@ -2,27 +2,27 @@ import React from "react";
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Tooltip } from "recharts";
 import "./chartInterest.scss";
 
-function ChartInterest() {
+function ChartInterest({ dataInterest }) {
 	const data = [
 		{
 			subject: "Food",
-			A: 66,
+			A: dataInterest.food,
 		},
 		{
 			subject: "Music",
-			A: 100,
+			A: dataInterest.music,
 		},
 		{
 			subject: "Sport",
-			A: 55,
+			A: dataInterest.sport,
 		},
 		{
 			subject: "Photography",
-			A: 73,
+			A: dataInterest.photography,
 		},
 		{
 			subject: "Movie",
-			A: 95,
+			A: dataInterest.movie,
 		},
 	];
 
