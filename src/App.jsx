@@ -14,7 +14,9 @@ function App() {
   const isToken = localStorage.getItem("adminKey");
 
   if (!isToken) {
-    localStorage.setItem("adminKey", searchParams.get("token"));
+    if (searchParams.get("token")) {
+      localStorage.setItem("adminKey", searchParams.get("token"));
+    }
   }
 
   Axios.interceptors.request.use(
