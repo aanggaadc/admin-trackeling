@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Widget from "../../components/widget/Widget";
 import Navbar from "../../components/navbar/Navbar";
@@ -6,8 +6,10 @@ import "./home.scss";
 import ChartGender from "../../components/chart_gender/ChartGender";
 import ChartTrips from "../../components/chart_trips/ChartTrips";
 import ChartInterest from "../../components/chart_interest/ChartInterest";
+import { toast } from 'react-toastify'
 
 function Home() {
+
 	return (
 		<div>
 			<div className="home">

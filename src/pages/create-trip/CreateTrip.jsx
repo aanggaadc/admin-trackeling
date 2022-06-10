@@ -33,8 +33,7 @@ function CreateTrip() {
                 formData.append("image", values.image);
 
                 Axios.post(`${API_URL}/recomendation/create`, formData)
-                  .then((response) => {
-                    console.log(response)
+                  .then(() => {
                     toast.success("Trip Successfully created!!")
                     navigate('/')
                   }).catch((error) => {

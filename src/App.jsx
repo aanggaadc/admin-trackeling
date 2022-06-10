@@ -1,10 +1,10 @@
 import { Route, Routes, useSearchParams, useNavigate } from "react-router-dom";
 import { useLayoutEffect } from 'react'
 import Home from "./pages/home/Home";
+import 'react-toastify/dist/ReactToastify.css';
 import CreateTrip from "./pages/create-trip/CreateTrip";
 import { ToastContainer, toast } from "react-toastify";
 import Axios from 'axios'
-
 
 function App() {
   const navigate = useNavigate()
