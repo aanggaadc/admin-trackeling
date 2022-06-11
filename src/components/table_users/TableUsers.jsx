@@ -76,6 +76,10 @@ function TableUsers() {
 				text: "10",
 				value: 10,
 			},
+			{
+				text: "15",
+				value: 15,
+			},
 		],
 	};
 
