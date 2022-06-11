@@ -17,7 +17,8 @@ function TripList() {
             destination: `Destination ${key}`,
             startDate: key * 10,
             endDate: key * 10,
-            member : member,
+            maxMember : member,
+            countMember : member,
             description : `A Trip with ${member} member to destination ${key}`,
             tripStatus: 'done'
           };
@@ -50,9 +51,12 @@ function TripList() {
         dataField: 'endDate',
         text: 'End Date'
     }, {
-        dataField: 'member',
-        text: 'Member'
+        dataField: 'countMember',
+        text: 'Current Member'
     }, {
+      dataField: 'maxMember',
+      text: 'Max Member'
+    } ,{
         dataField: 'description',
         text: 'Description'
     }, {
