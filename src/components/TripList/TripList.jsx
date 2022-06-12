@@ -12,7 +12,8 @@ function TripList() {
           const key = index + 1;
           const member = 4
           return {
-            tripID: key,
+            number: key,
+            hostedBy: `Host ${key}`,
             tripName: `Trip ${key}`,
             destination: `Destination ${key}`,
             startDate: key * 10,
@@ -36,8 +37,11 @@ function TripList() {
     // } ];
 
     const columns = [{
-      dataField: 'tripID',
-      text: 'Trip ID',
+      dataField: 'number',
+      text: ' ',
+    },{
+      dataField: 'hostedBy',
+      text: 'Host By',
     }, {
       dataField: 'tripName',
       text: 'Trip Name',
