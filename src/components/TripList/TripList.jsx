@@ -12,12 +12,14 @@ function TripList() {
           const key = index + 1;
           const member = 4
           return {
-            tripID: key,
+            number: key,
+            hostedBy: `Host ${key}`,
             tripName: `Trip ${key}`,
             destination: `Destination ${key}`,
             startDate: key * 10,
             endDate: key * 10,
-            member : member,
+            maxMember : member,
+            countMember : member,
             description : `A Trip with ${member} member to destination ${key}`,
             tripStatus: 'done'
           };
@@ -35,8 +37,11 @@ function TripList() {
     // } ];
 
     const columns = [{
-      dataField: 'tripID',
-      text: 'Trip ID',
+      dataField: 'number',
+      text: ' ',
+    },{
+      dataField: 'hostedBy',
+      text: 'Host By',
     }, {
       dataField: 'tripName',
       text: 'Trip Name',
@@ -50,9 +55,12 @@ function TripList() {
         dataField: 'endDate',
         text: 'End Date'
     }, {
-        dataField: 'member',
-        text: 'Member'
+        dataField: 'countMember',
+        text: 'Current Member'
     }, {
+      dataField: 'maxMember',
+      text: 'Max Member'
+    } ,{
         dataField: 'description',
         text: 'Description'
     }, {
