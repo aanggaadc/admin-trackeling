@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
 import "react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css";
 import BootstrapTable from "react-bootstrap-table-next";
-import paginationFactory from "react-bootstrap-table2-paginator";
+import paginationFactory, { PaginationProvider } from "react-bootstrap-table2-paginator";
 import Axios from "axios";
 import "./TableUsers.scss";
 import { Button } from "react-bootstrap";
@@ -96,12 +96,32 @@ function TableUsers() {
 	];
 
 	const [users, setUsers] = useState([]);
+	const [totalRows, setTotalRows] = useState(0);
+	const [pageState, setPageState] = useState({
+		pageNumber: 1,
+		pageSize: 10,
+	});
 
-	// const getUserList = () => {
-	// 	Axios.get(`${API_URL / user / all}`);
-	// };
+	const getUserList = () => {
+		Axios.post(`${API_URL}/user/list`, pageState)
+			.then((response) => {
+				console.log("DATA RESPONSE", response);
+				setUsers(response.data.data.items);
+				setTotalRows(response.data.data.total_items);
+			})
+			.catch((error) => {
+				console.log("===========================================");
+				console.log("ERROR", error);
+				console.log("===========================================");
+			});
+	};
+
+	useEffect(() => {
+		getUserList();
+	}, [pageState]);
 
 	const options = {
+		page: pageState.pageNumber,
 		sizePerPageList: [
 			{
 				text: "10",
@@ -118,13 +138,30 @@ function TableUsers() {
 		],
 	};
 
+	function handleTableAction() {
+		return (type, { page, sizePerPage }) => {
+			const pageNumber = page || 1;
+			setPageState((prev) => {
+				return { ...prev, pageNumber: pageNumber, pageSize: sizePerPage };
+			});
+		};
+	}
+
 	return (
-		<BootstrapTable
-			keyField="id"
-			data={users}
-			columns={columns}
-			pagination={paginationFactory(options)}
-		/>
+		<PaginationProvider pagination={paginationFactory(options)}>
+			{({ paginationProps, paginationTableProps }) => {
+				return (
+					<BootstrapTable
+						keyField="uuid"
+						data={users}
+						columns={columns}
+						pagination={paginationFactory(options)}
+						onTableChange={handleTableAction()}
+						{...paginationTableProps}
+					/>
+				);
+			}}
+		</PaginationProvider>
 	);
 }
 
