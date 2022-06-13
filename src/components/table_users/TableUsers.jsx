@@ -16,7 +16,7 @@ function TableUsers() {
 	const [totalRows, setTotalRows] = useState(0);
 	const [pageState, setPageState] = useState({
 		pageNumber: 1,
-		pageSize: 10,
+		pageSize: "",
 	});
 	const [filter, setFilter] = useState({
 		username: "",
@@ -131,15 +131,15 @@ function TableUsers() {
 		sizePerPageList: [
 			{
 				text: "10",
-				value: 10,
+				value: (pageState.pageSize = 10),
 			},
 			{
 				text: "15",
-				value: 15,
+				value: (pageState.pageSize = 15),
 			},
 			{
 				text: "20",
-				value: 20,
+				value: (pageState.pageSize = 20),
 			},
 		],
 	};
