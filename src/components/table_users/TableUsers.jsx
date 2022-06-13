@@ -1,235 +1,167 @@
-import React, { useState } from "react";
-import { Table } from "react-bootstrap";
-import "@fortawesome/fontawesome-free/css/all.min.css";
-import "bootstrap-css-only/css/bootstrap.min.css";
-import "mdbreact/dist/css/mdb.css";
-import { MDBDataTableV5 } from "mdbreact";
+import React, { useEffect, useState } from "react";
+import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
+import "react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css";
+import BootstrapTable from "react-bootstrap-table-next";
+import paginationFactory, { PaginationProvider } from "react-bootstrap-table2-paginator";
 import Axios from "axios";
+import "./TableUsers.scss";
+import { Button } from "react-bootstrap";
+import { FaEdit, FaTrash } from "react-icons/fa";
+import { API_URL } from "../../config/url";
 
 function TableUsers() {
-	const [datatable, setDatatable] = useState({
-		columns: [
-			{
-				label: "Username",
-				field: "username",
-				width: 270,
-				// attributes: {
-				// 	"aria-controls": "DataTable",
-				// 	"aria-label": "Username",
-				// },
+	const columns = [
+		{
+			dataField: "no",
+			text: "No",
+			headerStyle: () => {
+				return { width: "22%" };
 			},
-			{
-				label: "Email",
-				field: "email",
-				width: 270,
+		},
+		{
+			dataField: "username",
+			text: "Username",
+			headerStyle: () => {
+				return { width: "50%" };
 			},
-			{
-				label: "Gender",
-				field: "gender",
-				sort: "disabled",
-				width: 150,
+		},
+		{
+			dataField: "email",
+			text: "Email",
+			headerStyle: () => {
+				return { width: "50%" };
 			},
-			{
-				label: "Age",
-				field: "age",
-				sort: "asc",
-				width: 100,
+		},
+		{
+			dataField: "age",
+			text: "Age",
+			headerStyle: () => {
+				return { width: "25%" };
 			},
-			{
-				label: "Location",
-				field: "location",
-				width: 150,
+		},
+		{
+			dataField: "gender",
+			text: "Gender",
+			headerStyle: () => {
+				return { width: "32%" };
 			},
-			{
-				label: "Phone Number",
-				field: "phone_number",
-				width: 100,
+		},
+		{
+			dataField: "location",
+			text: "Location",
+			headerStyle: () => {
+				return { width: "49%" };
 			},
-		],
-		rows: [
-			{
-				username: "Tiger Nixon",
-				email: "System Architect",
-				gender: "Edinburgh",
-				age: "61",
-				location: "2011/04/25",
-				phone_number: "$320",
+		},
+		{
+			dataField: "phoneNumber",
+			text: "Phone Number",
+			headerStyle: () => {
+				return { width: "47%" };
 			},
-			{
-				username: "Garrett Winters",
-				email: "Accountant",
-				gender: "Tokyo",
-				age: "63",
-				location: "2011/07/25",
-				phone_number: "$170",
+		},
+		{
+			dataField: "phoneNumber",
+			text: "Phone Number",
+			headerStyle: () => {
+				return { width: "47%" };
 			},
-			{
-				username: "Ashton Cox",
-				email: "Junior Technical Author",
-				gender: "San Francisco",
-				age: "66",
-				location: "2009/01/12",
-				phone_number: "$86",
+		},
+		{
+			dataField: "isActive",
+			text: "is Active",
+			headerStyle: () => {
+				return { width: "47%" };
 			},
-			{
-				username: "Cedric Kelly",
-				email: "Senior Javascript Developer",
-				gender: "Edinburgh",
-				age: "22",
-				location: "2012/03/29",
-				phone_number: "$433",
+		},
+		{
+			dataField: "",
+			text: "Actions",
+			headerStyle: () => {
+				return { width: "45%" };
 			},
-			{
-				username: "Airi Satou",
-				email: "Accountant",
-				gender: "Tokyo",
-				age: "33",
-				location: "2008/11/28",
-				phone_number: "$162",
+			formatter: (cell, row) => {
+				return (
+					<div className="text-center">
+						<Button variant="none">
+							<FaEdit color="blue" />
+						</Button>
+						<Button variant="none">
+							<FaTrash color="red" />
+						</Button>
+					</div>
+				);
 			},
-			{
-				username: "Brielle Williamson",
-				email: "Integration Specialist",
-				gender: "New York",
-				age: "61",
-				location: "2012/12/02",
-				phone_number: "$372",
-			},
-			{
-				username: "Herrod Chandler",
-				email: "Sales Assistant",
-				gender: "San Francisco",
-				age: "59",
-				location: "2012/08/06",
-				phone_number: "$137",
-			},
-			{
-				username: "Rhona Davidson",
-				email: "Integration Specialist",
-				gender: "Tokyo",
-				age: "55",
-				location: "2010/10/14",
-				phone_number: "$327",
-			},
-			{
-				username: "Colleen Hurst",
-				email: "Javascript Developer",
-				gender: "San Francisco",
-				age: "39",
-				location: "2009/09/15",
-				phone_number: "$205",
-			},
-			{
-				username: "Sonya Frost",
-				email: "Software Engineer",
-				gender: "Edinburgh",
-				age: "23",
-				location: "2008/12/13",
-				phone_number: "$103",
-			},
-			{
-				username: "Ashton Cox",
-				email: "Junior Technical Author",
-				gender: "San Francisco",
-				age: "66",
-				location: "2009/01/12",
-				phone_number: "$86",
-			},
-			{
-				username: "Cedric Kelly",
-				email: "Senior Javascript Developer",
-				gender: "Edinburgh",
-				age: "22",
-				location: "2012/03/29",
-				phone_number: "$433",
-			},
-			{
-				username: "Airi Satou",
-				email: "Accountant",
-				gender: "Tokyo",
-				age: "33",
-				location: "2008/11/28",
-				phone_number: "$162",
-			},
-			{
-				username: "Brielle Williamson",
-				email: "Integration Specialist",
-				gender: "New York",
-				age: "61",
-				location: "2012/12/02",
-				phone_number: "$372",
-			},
-			{
-				username: "Herrod Chandler",
-				email: "Sales Assistant",
-				gender: "San Francisco",
-				age: "59",
-				location: "2012/08/06",
-				phone_number: "$137",
-			},
-			{
-				username: "Rhona Davidson",
-				email: "Integration Specialist",
-				gender: "Tokyo",
-				age: "55",
-				location: "2010/10/14",
-				phone_number: "$327",
-			},
-			{
-				username: "Colleen Hurst",
-				email: "Javascript Developer",
-				gender: "San Francisco",
-				age: "39",
-				location: "2009/09/15",
-				phone_number: "$205",
-			},
-			{
-				username: "Sonya Frost",
-				email: "Software Engineer",
-				gender: "Edinburgh",
-				age: "23",
-				location: "2008/12/13",
-				phone_number: "$103",
-			},
-			{
-				username: "Ashton Cox",
-				email: "Junior Technical Author",
-				gender: "San Francisco",
-				age: "66",
-				location: "2009/01/12",
-				phone_number: "$86",
-			},
-			{
-				username: "Cedric Kelly",
-				email: "Senior Javascript Developer",
-				gender: "Edinburgh",
-				age: "22",
-				location: "2012/03/29",
-				phone_number: "$433",
-			},
-			{
-				username: "Airi Satou",
-				email: "Accountant",
-				gender: "Tokyo",
-				age: "33",
-				location: "2008/11/28",
-				phone_number: "$162",
-			},
-		],
+		},
+	];
+
+	const [users, setUsers] = useState([]);
+	const [totalRows, setTotalRows] = useState(0);
+	const [pageState, setPageState] = useState({
+		pageNumber: 1,
+		pageSize: 10,
 	});
 
-	// const getUserList = () => {
-	// 	Axios.
-	// }
+	const getUserList = () => {
+		Axios.post(`${API_URL}/user/list`, pageState)
+			.then((response) => {
+				console.log("DATA RESPONSE", response);
+				setUsers(response.data.data.items);
+				setTotalRows(response.data.data.total_items);
+			})
+			.catch((error) => {
+				console.log("===========================================");
+				console.log("ERROR", error);
+				console.log("===========================================");
+			});
+	};
+
+	useEffect(() => {
+		getUserList();
+	}, [pageState]);
+
+	const options = {
+		page: pageState.pageNumber,
+		sizePerPageList: [
+			{
+				text: "10",
+				value: 10,
+			},
+			{
+				text: "15",
+				value: 15,
+			},
+			{
+				text: "20",
+				value: 20,
+			},
+		],
+	};
+
+	function handleTableAction() {
+		return (type, { page, sizePerPage }) => {
+			const pageNumber = page || 1;
+			setPageState((prev) => {
+				return { ...prev, pageNumber: pageNumber, pageSize: sizePerPage };
+			});
+		};
+	}
 
 	return (
-		<MDBDataTableV5
-			hover
-			searching={false}
-			data={datatable}
-			entries={5}
-			entriesOptions={[5, 10, 15]}
-		/>
+		<PaginationProvider pagination={paginationFactory(options)}>
+			{({ paginationProps, paginationTableProps }) => {
+				return (
+					<BootstrapTable
+						keyField="uuid"
+						data={users}
+						columns={columns}
+						pagination={paginationFactory(options)}
+						onTableChange={handleTableAction()}
+						{...paginationTableProps}
+					/>
+				);
+			}}
+		</PaginationProvider>
 	);
 }
 
