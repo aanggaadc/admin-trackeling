@@ -41,7 +41,7 @@ function FilterContent({ setFilter, filter }) {
                     onChange={(e) => {
                       setFilter({ ...filter, sex: e.target.value })
                     }}>
-                    <option>Search By Gender</option>
+                    <option value="">Search By Gender</option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                   </Form.Select>
