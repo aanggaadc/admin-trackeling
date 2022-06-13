@@ -8,8 +8,24 @@ import "./TableUsers.scss";
 import { Button } from "react-bootstrap";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { API_URL } from "../../config/url";
+import SearchUsers from "../../components/search_users/SearchUsers";
+
 
 function TableUsers() {
+	const [users, setUsers] = useState([]);
+	const [totalRows, setTotalRows] = useState(0);
+	const [pageState, setPageState] = useState({
+		pageNumber: 1,
+		pageSize: 10,
+	});
+	const [filter, setFilter] = useState({
+		username: "",
+		email: "",
+		sex: "",
+		location: ""
+	})
+
+
 	const columns = [
 		{
 			dataField: "no",
@@ -17,6 +33,10 @@ function TableUsers() {
 			headerStyle: () => {
 				return { width: "22%" };
 			},
+			formatter: (cell, row, rowIndex, formatExtraData) => {
+				return rowIndex + 1;
+			},
+			sort: true,
 		},
 		{
 			dataField: "username",
@@ -33,42 +53,35 @@ function TableUsers() {
 			},
 		},
 		{
-			dataField: "age",
+			dataField: "profile.age",
 			text: "Age",
 			headerStyle: () => {
 				return { width: "25%" };
 			},
 		},
 		{
-			dataField: "gender",
+			dataField: "profile.sex",
 			text: "Gender",
 			headerStyle: () => {
 				return { width: "32%" };
 			},
 		},
 		{
-			dataField: "location",
+			dataField: "profile.location",
 			text: "Location",
 			headerStyle: () => {
 				return { width: "49%" };
 			},
 		},
 		{
-			dataField: "phoneNumber",
+			dataField: "profile.phone_number",
 			text: "Phone Number",
 			headerStyle: () => {
 				return { width: "47%" };
 			},
 		},
 		{
-			dataField: "phoneNumber",
-			text: "Phone Number",
-			headerStyle: () => {
-				return { width: "47%" };
-			},
-		},
-		{
-			dataField: "isActive",
+			dataField: "is_active",
 			text: "is Active",
 			headerStyle: () => {
 				return { width: "47%" };
@@ -95,17 +108,10 @@ function TableUsers() {
 		},
 	];
 
-	const [users, setUsers] = useState([]);
-	const [totalRows, setTotalRows] = useState(0);
-	const [pageState, setPageState] = useState({
-		pageNumber: 1,
-		pageSize: 10,
-	});
-
 	const getUserList = () => {
-		Axios.post(`${API_URL}/user/list`, pageState)
+		Axios.post(`${API_URL}/user/list`, { ...filter, ...pageState })
 			.then((response) => {
-				console.log("DATA RESPONSE", response);
+				// console.log("DATA RESPONSE", response);
 				setUsers(response.data.data.items);
 				setTotalRows(response.data.data.total_items);
 			})
@@ -118,7 +124,7 @@ function TableUsers() {
 
 	useEffect(() => {
 		getUserList();
-	}, [pageState]);
+	}, [pageState, filter])
 
 	const options = {
 		page: pageState.pageNumber,
@@ -148,20 +154,24 @@ function TableUsers() {
 	}
 
 	return (
-		<PaginationProvider pagination={paginationFactory(options)}>
-			{({ paginationProps, paginationTableProps }) => {
-				return (
-					<BootstrapTable
-						keyField="uuid"
-						data={users}
-						columns={columns}
-						pagination={paginationFactory(options)}
-						onTableChange={handleTableAction()}
-						{...paginationTableProps}
-					/>
-				);
-			}}
-		</PaginationProvider>
+		<>
+			<SearchUsers filter={filter} setFilter={setFilter} />
+			<PaginationProvider pagination={paginationFactory(options)}>
+				{({ paginationProps, paginationTableProps }) => {
+					return (
+						<BootstrapTable
+							keyField="uuid"
+							data={users}
+							columns={columns}
+							pagination={paginationFactory(options)}
+							onTableChange={handleTableAction()}
+							{...paginationTableProps}
+						/>
+					);
+				}}
+			</PaginationProvider>
+		</>
+
 	);
 }
 

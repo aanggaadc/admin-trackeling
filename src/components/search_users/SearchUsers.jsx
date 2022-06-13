@@ -1,7 +1,8 @@
 import React from "react";
-import { Card, Button, Form } from "react-bootstrap";
+import { Card, Form } from "react-bootstrap";
 
 function FilterContent({ setFilter, filter }) {
+
   return (
     <div className="mt-3">
       <Card>
@@ -16,19 +17,19 @@ function FilterContent({ setFilter, filter }) {
                     type="text"
                     placeholder="Search By Username"
                     onChange={(e) => {
-                      setFilter({ ...filter, name: e.target.value });
+                      setFilter({ ...filter, username: e.target.value });
                     }}
                   />
                 </Form.Group>
               </div>
               <div className="col-md-6">
                 <Form.Group className="mb-3" controlId="formBasicTripName">
-                  <Form.Label>Trip Name</Form.Label>
+                  <Form.Label>Email</Form.Label>
                   <Form.Control
                     type="text"
-                    placeholder="Search By Trip Name"
+                    placeholder="Search By Email"
                     onChange={(e) => {
-                      setFilter({ ...filter, price: e.target.value });
+                      setFilter({ ...filter, email: e.target.value });
                     }}
                   />
                 </Form.Group>
@@ -36,23 +37,24 @@ function FilterContent({ setFilter, filter }) {
               <div className="col-md-6">
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                   <Form.Label>Gender</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="Search By Gender"
+                  <Form.Select aria-label="Default select example"
                     onChange={(e) => {
-                      setFilter({ ...filter, price: e.target.value });
-                    }}
-                  />
+                      setFilter({ ...filter, sex: e.target.value })
+                    }}>
+                    <option>Search By Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                  </Form.Select>
                 </Form.Group>
               </div>
               <div className="col-md-6">
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                   <Form.Label>Location</Form.Label>
                   <Form.Control
-                    type="Number"
+                    type="text"
                     placeholder="Search By User Location"
                     onChange={(e) => {
-                      setFilter({ ...filter, price: e.target.value });
+                      setFilter({ ...filter, location: e.target.value });
                     }}
                   />
                 </Form.Group>
