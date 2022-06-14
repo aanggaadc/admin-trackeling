@@ -7,21 +7,25 @@ import { Form } from "react-bootstrap";
 import Axios from "axios";
 import { API_URL } from "../../config/url";
 import { toast } from "react-toastify";
+import { useParams } from "react-router-dom";
 
 function EditUser() {
+	const { userId } = useParams();
+
 	const [user, setUser] = useState({
 		username: "",
 		email: "",
+		phone_number: "",
 		password: "",
 	});
 
 	const getUserData = () => {
-		Axios.get(`${API_URL}/user/single`).then((response) => {
+		Axios.get(`${API_URL}/user/single/${userId}`).then((response) => {
 			const apiData = response.data.data;
 			setUser({
 				username: apiData.username,
 				email: apiData.email,
-				phone_number: apiData.phone_number,
+				phone_number: apiData.profile.phone_number,
 			});
 		});
 	};
@@ -44,7 +48,9 @@ function EditUser() {
 							onSubmit={(values) => {
 								console.log("VALUES", values);
 
-								Axios.put(`${API_URL}/user/edit`, values)
+								setUser({ ...user, password: "" });
+
+								Axios.put(`${API_URL}/user/edit/${userId}`, values)
 									.then((response) => {
 										toast.success(response.data.message);
 										getUserData();
@@ -75,7 +81,14 @@ function EditUser() {
 										</div>
 										<div className="right">
 											<label for="email">Email</label>
-											<input type="email" className="formControl" name="email" id="email"></input>
+											<input
+												type="email"
+												className="formControl"
+												name="email"
+												id="email"
+												value={values.email}
+												onChange={handleChange}
+											></input>
 										</div>
 									</div>
 									<div className="formGroup">
@@ -86,6 +99,8 @@ function EditUser() {
 												className="formControl"
 												name="phone_number"
 												id="phone_number"
+												value={values.phone_number}
+												onChange={handleChange}
 											></input>
 										</div>
 										<div className="right">
@@ -95,6 +110,8 @@ function EditUser() {
 												className="formControl"
 												name="password"
 												id="password"
+												onChange={handleChange}
+												value={values.password}
 											></input>
 										</div>
 									</div>
