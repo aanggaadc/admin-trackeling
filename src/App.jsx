@@ -9,6 +9,7 @@ import { ToastContainer, toast } from "react-toastify";
 import Axios from "axios";
 import Unauthorization from "./pages/unauthorization/Unauthorization";
 import PrivateRoutes from "./routes/PrivateRoutes";
+import EditUser from "./pages/edit-user/EditUser";
 
 function App() {
 	const navigate = useNavigate();
@@ -51,9 +52,9 @@ function App() {
 		}
 	);
 
-	useEffect(() => {
-		navigate("/");
-	}, []);
+	// useEffect(() => {
+	// 	navigate("/");
+	// }, []);
 
 	return (
 		<div>
@@ -63,6 +64,7 @@ function App() {
 						<Route index element={<Home />} />
 						<Route path="create-trip" element={<CreateTrip />} />
 						<Route path="users" element={<UserList />} />
+						<Route path="edit-user/:userId" element={<EditUser />} />
 						<Route path="trips" element={<Trips />}></Route>
 					</Route>
 				</Route>
