@@ -4,7 +4,7 @@ import "react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.m
 import BootstrapTable from "react-bootstrap-table-next";
 import Axios from "axios";
 import "./TableUsers.scss";
-import { Button } from "react-bootstrap";
+import { Button, Modal } from "react-bootstrap";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { API_URL } from "../../config/url";
 import SearchUsers from "../../components/search_users/SearchUsers";
@@ -31,10 +31,14 @@ function TableUsers() {
 		location: "",
 	});
 
+	const [currentId, setCurrentId] = useState("");
 	const [show, setShow] = useState(false);
 
 	const handleClose = () => setShow(false);
-	const handleShow = () => setShow(true);
+	const handleShow = (id) => {
+		setShow(true);
+		setCurrentId(id);
+	};
 
 	const columns = [
 		{
@@ -103,9 +107,9 @@ function TableUsers() {
 
 						<Button
 							variant="none"
-							// onClick={() => {
-							// 	handleDelete(row.user_id);
-							// }}
+							onClick={() => {
+								handleShow(row.user_id);
+							}}
 						>
 							<FaTrash color="red" />
 						</Button>
@@ -116,7 +120,7 @@ function TableUsers() {
 	];
 
 	const handleDelete = (id) => {
-		Axios.delete(`${API_URL}/user/delete/${id}`)
+		Axios.delete(`${API_URL}/user/nonactive/${id}`)
 			.then((response) => {
 				// console.log(response.data.data);
 				toast.success(response.data.message);
@@ -212,7 +216,7 @@ function TableUsers() {
 					);
 				}}
 			</PaginationProvider>
-			{/* <Modal show={show} onHide={handleClose}>
+			<Modal show={show} onHide={handleClose}>
 				<Modal.Header closeButton>
 					<Modal.Title>Modal heading</Modal.Title>
 				</Modal.Header>
@@ -221,11 +225,17 @@ function TableUsers() {
 					<Button variant="secondary" onClick={handleClose}>
 						Close
 					</Button>
-					<Button variant="danger" onClick={handleClose, () => {}}>
+					<Button
+						variant="danger"
+						onClick={() => {
+							handleDelete(currentId);
+							handleClose();
+						}}
+					>
 						Accept
 					</Button>
 				</Modal.Footer>
-			</Modal> */}
+			</Modal>
 		</>
 	);
 }
