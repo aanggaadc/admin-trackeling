@@ -8,8 +8,7 @@ import { API_URL } from "../../../config/url";
 import moment from "moment";
 import "./EditTripList.scss";
 
-function EditTripList({ show, handleClose, currentId }) {
-	// const { currentId } = useParams();
+function EditTripList({ show, handleClose, currentId, getTripList, setCurrentId }) {
 	const [image, setImage] = useState("");
 	const [data, setData] = useState({});
 
@@ -56,35 +55,36 @@ function EditTripList({ show, handleClose, currentId }) {
 						}}
 						enableReinitialize={true}
 						onSubmit={(values) => {
-							// if (values.max_member < values.count_member) {
-							// 	toast.error("Max member can not be set below current member");
-							// } else if (values.start_date > values.end_date) {
-							// 	toast.error("Please input the right date");
-							// } else {
-							const formData = new FormData();
-							formData.append("trip_name", values.trip_name);
-							formData.append("destination", values.destination);
-							formData.append("start_date", values.start_date);
-							formData.append("end_date", values.end_date);
-							formData.append("max_member", values.max_member);
-							formData.append("description", values.description);
-							formData.append("trip_status", values.trip_status);
-							formData.append("image", values.image);
+							if (values.max_member < values.count_member) {
+								toast.error("Max member can not be set below current member");
+							} else if (values.start_date > values.end_date) {
+								toast.error("Please input the right date");
+							} else {
+								const formData = new FormData();
+								formData.append("trip_name", values.trip_name);
+								formData.append("destination", values.destination);
+								formData.append("start_date", values.start_date);
+								formData.append("end_date", values.end_date);
+								formData.append("max_member", values.max_member);
+								formData.append("description", values.description);
+								formData.append("trip_status", values.trip_status);
+								formData.append("image", values.image);
 
-							Axios.put(`${API_URL}/trip/edit_trip/${currentId}`, formData)
-								.then((response) => {
-									console.log(response);
-									toast.success("Trip Successfully Edited!!");
-									getTripData();
-									handleClose();
-								})
-								.catch((error) => {
-									if (error.response) {
-										toast.error(error.response.data.message);
-									} else {
-										toast.error("Cannot Connect to Server");
-									}
-								});
+								Axios.put(`${API_URL}/trip/edit_trip/${currentId}`, formData)
+									.then((response) => {
+										console.log(response);
+										toast.success("Trip Successfully Edited!!");
+										getTripList();
+										setCurrentId("");
+									})
+									.catch((error) => {
+										if (error.response) {
+											toast.error(error.response.data.message);
+										} else {
+											toast.error("Cannot Connect to Server");
+										}
+									});
+							}
 						}}
 					>
 						{({ values, handleChange, handleSubmit, setFieldValue }) => (

@@ -272,7 +272,13 @@ function TripList({ setFilter, filter }) {
 						</Card.Body>
 					</Card>
 				</Container>
-				<EditTripList show={show} handleClose={handleClose} currentId={currentId} />
+				<EditTripList
+					show={show}
+					handleClose={handleClose}
+					currentId={currentId}
+					getTripList={getTripList}
+					setCurrentId={setCurrentId}
+				/>
 			</div>
 		</div>
 	);
