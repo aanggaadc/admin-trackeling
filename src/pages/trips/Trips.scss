@@ -1,7 +1,29 @@
-.trips{
-    display: flex;
+.trips {
+	display: flex;
 
-    .tripsContainer{
-        flex: 6;
-    }
+	.tripsContainer {
+		flex: 6;
+
+		.contentContainer {
+			box-shadow: 2px 4px 10px 1px rgba(14, 27, 77, 0.47);
+			border-radius: 10px;
+			margin: 1rem 0.5rem;
+			padding: 1.5rem;
+
+			.title {
+				font-size: 1.5rem;
+				text-align: center;
+				color: gray;
+				margin: 1rem 0;
+			}
+
+			.react-bootstrap-table {
+				.table {
+					& > :not(:first-child) {
+						border-top: 2px solid #188cbd !important;
+					}
+				}
+			}
+		}
+	}
 }
