@@ -52,9 +52,9 @@ function App() {
 		}
 	);
 
-	// useEffect(() => {
-	// 	navigate("/");
-	// }, []);
+	useEffect(() => {
+		navigate("/");
+	}, []);
 
 	return (
 		<div>
