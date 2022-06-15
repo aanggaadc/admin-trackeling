@@ -4,15 +4,24 @@ import Navbar from "../../components/navbar/Navbar";
 import TripList from '../../components/TripList/TripList';
 import './Trips.scss'
 import FilterList from '../../components/FilterList/FilterList';
+import { useState } from "react";
 
 function Trips() {
+  const [filter, setFilter] = useState({
+    trip_name: "",
+    destination: "",
+    start_date: "",
+    end_date: "",
+    count_member: "",
+    max_member: ""
+    })
   return (
     <div className="trips">
         <Sidebar />
         <div className="tripsContainer">
             <Navbar />
-            <FilterList />
-            <TripList />
+            <FilterList filter={filter} setFilter={setFilter} />
+            <TripList filter={filter} setFilter={setFilter} />
         </div> 
     </div>
   )

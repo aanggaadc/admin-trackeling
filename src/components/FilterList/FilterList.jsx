@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {Card , Container, Form} from 'react-bootstrap'
 
-function FilterList() {
+function FilterList({ setFilter, filter }) {
   return (
     <div className="FilterList">
       <div className="FilterListContainer">
@@ -18,7 +18,7 @@ function FilterList() {
                     type="text"
                     placeholder="Search By Trip by Trip Name"
                     onChange={(e) => {
-                      // setFilter({ ...filter, name: e.target.value });
+                      setFilter({ ...filter, trip_name: e.target.value });
                     }}
                   />
                 </Form.Group>
@@ -30,7 +30,7 @@ function FilterList() {
                     type="text"
                     placeholder="Search Trip by Destination"
                     onChange={(e) => {
-                      // setFilter({ ...filter, price: e.target.value });
+                      setFilter({ ...filter, destination: e.target.value });
                     }}
                   />
                 </Form.Group>
@@ -41,10 +41,10 @@ function FilterList() {
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                   <Form.Label>Start Date</Form.Label>
                   <Form.Control
-                    type="text"
+                    type="date"
                     placeholder="Search By Trip by Start Date"
                     onChange={(e) => {
-                      // setFilter({ ...filter, name: e.target.value });
+                      setFilter({ ...filter, start_date: e.target.value });
                     }}
                   />
                 </Form.Group>
@@ -53,10 +53,10 @@ function FilterList() {
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                   <Form.Label>End Date</Form.Label>
                   <Form.Control
-                    type="text"
+                    type="date"
                     placeholder="Search Trip by End Date"
                     onChange={(e) => {
-                      // setFilter({ ...filter, price: e.target.value });
+                      setFilter({ ...filter, end_date: e.target.value });
                     }}
                   />
                 </Form.Group>
@@ -70,7 +70,7 @@ function FilterList() {
                     type="number"
                     placeholder="Search By Trip by Count Member"
                     onChange={(e) => {
-                      // setFilter({ ...filter, name: e.target.value });
+                      setFilter({ ...filter, count_member: e.target.value });
                     }}
                   />
                 </Form.Group>
@@ -82,7 +82,7 @@ function FilterList() {
                     type="number"
                     placeholder="Search Trip by Max Member"
                     onChange={(e) => {
-                      // setFilter({ ...filter, price: e.target.value });
+                      setFilter({ ...filter, max_member: e.target.value });
                     }}
                   />
                 </Form.Group>
