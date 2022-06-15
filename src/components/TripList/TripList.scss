@@ -1,4 +1,42 @@
-.card-table {
+.cardTable {
 	min-height: 100vh;
 	overflow: auto;
+}
+
+@media (max-width: 1024px) {
+	.cardTable {
+		.react-bootstrap-table {
+			.table {
+				max-width: 100%;
+
+				thead {
+					display: none;
+				}
+
+				tbody {
+					display: flex;
+					flex-direction: column;
+					gap: 35px;
+				}
+
+				td {
+					display: flex;
+					flex: 1;
+					border-bottom: 2px solid #eee !important;
+					word-wrap: normal;
+
+					span {
+						max-width: 7em;
+						word-wrap: break-word;
+					}
+
+					&:before {
+						flex: 2;
+						font-weight: bold;
+						content: attr(data-header);
+					}
+				}
+			}
+		}
+	}
 }
