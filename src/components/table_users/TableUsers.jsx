@@ -47,12 +47,24 @@ function TableUsers() {
 			headerStyle: () => {
 				return { width: "50%" };
 			},
+			formatter: (cell, row) => {
+				return <span>{row.username}</span>;
+			},
+			attrs: {
+				"data-header": "Username",
+			},
 		},
 		{
 			dataField: "email",
 			text: "Email",
 			headerStyle: () => {
 				return { width: "50%" };
+			},
+			formatter: (cell, row) => {
+				return <span>{row.email}</span>;
+			},
+			attrs: {
+				"data-header": "Email",
 			},
 		},
 		{
@@ -61,12 +73,24 @@ function TableUsers() {
 			headerStyle: () => {
 				return { width: "25%" };
 			},
+			formatter: (cell, row) => {
+				return <span>{row.profile.age}</span>;
+			},
+			attrs: {
+				"data-header": "Age",
+			},
 		},
 		{
 			dataField: "profile.sex",
 			text: "Gender",
 			headerStyle: () => {
 				return { width: "32%" };
+			},
+			formatter: (cell, row) => {
+				return <span>{row.profile.sex}</span>;
+			},
+			attrs: {
+				"data-header": "Gender",
 			},
 		},
 		{
@@ -75,6 +99,12 @@ function TableUsers() {
 			headerStyle: () => {
 				return { width: "49%" };
 			},
+			formatter: (cell, row) => {
+				return <span>{row.profile.location}</span>;
+			},
+			attrs: {
+				"data-header": "Location",
+			},
 		},
 		{
 			dataField: "profile.phone_number",
@@ -82,12 +112,21 @@ function TableUsers() {
 			headerStyle: () => {
 				return { width: "47%" };
 			},
+			formatter: (cell, row) => {
+				return <span>{row.profile.phone_number}</span>;
+			},
+			attrs: {
+				"data-header": "Phone Number",
+			},
 		},
 		{
 			dataField: "is_active",
 			text: "is Active",
 			headerStyle: () => {
 				return { width: "47%" };
+			},
+			attrs: {
+				"data-header": "is Active",
 			},
 		},
 		{
@@ -115,6 +154,9 @@ function TableUsers() {
 						</Button>
 					</div>
 				);
+			},
+			attrs: {
+				"data-header": "Actions",
 			},
 		},
 	];
