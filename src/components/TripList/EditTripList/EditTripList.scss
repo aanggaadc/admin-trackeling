@@ -1,0 +1,61 @@
+#editUserForm {
+	padding: 2rem;
+
+	.formGroup {
+		display: flex;
+		gap: 2rem;
+		margin: 2rem 0;
+		justify-content: center;
+
+		.left,
+		.right {
+			display: flex;
+			flex-direction: column;
+			flex: 1;
+
+			.formControl {
+				border: solid black;
+				border-radius: 15px;
+				padding: 0.5rem;
+				min-width: 200px;
+				width: 100%;
+
+				&:focus {
+					outline: none;
+					border-color: #25abe3;
+				}
+			}
+		}
+
+		textarea {
+			width: 100%;
+			border: solid black;
+			border-radius: 15px;
+			padding: 0.5rem;
+
+			&:focus {
+				outline: none;
+				border-color: #25abe3;
+			}
+		}
+	}
+
+	.imgContainer {
+		display: flex;
+		justify-content: center;
+
+		.imgUpload {
+			width: 20rem;
+			height: 15rem;
+			object-fit: cover;
+		}
+	}
+
+	.btnGroup {
+		display: flex;
+		margin-top: 2rem;
+		gap: 20px;
+		justify-content: flex-end;
+		align-items: center;
+	}
+}
