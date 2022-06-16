@@ -1,11 +1,9 @@
 import React from "react";
 import { CLIENT_URL } from "../../config/url";
-import { toast } from "react-toastify";
 import "./navbar.scss";
 
 function Navbar() {
 	const handleLogout = () => {
-		toast.success("You are logged out");
 		localStorage.removeItem("adminKey");
 	};
 
@@ -16,7 +14,11 @@ function Navbar() {
 					<div className="items">
 						<div className="item">admin</div>
 						<div className="item">
-							<a href={`${CLIENT_URL}/login-admin`} className="item-logout" onClick={handleLogout}>
+							<a
+								href={`${CLIENT_URL}/login-admin/?logout=true`}
+								className="item-logout"
+								onClick={handleLogout}
+							>
 								Logout
 							</a>
 						</div>
