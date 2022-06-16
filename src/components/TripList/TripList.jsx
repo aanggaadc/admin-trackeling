@@ -13,6 +13,7 @@ import { FaEdit, FaTrash } from "react-icons/fa";
 import { API_URL } from "../../config/url";
 import Axios from "axios";
 import { toast } from "react-toastify";
+import EditTripList from "./EditTripList/EditTripList";
 
 function TripList({ setFilter, filter }) {
 	const [products, setProducts] = useState([]);
@@ -89,6 +90,7 @@ function TripList({ setFilter, filter }) {
 				});
 				setProducts(data);
 				setTotalRows(response.data.data.total_items);
+				console.log(response.data.data.items);
 			})
 			.catch((error) => {
 				if (error.response) {
@@ -200,7 +202,12 @@ function TripList({ setFilter, filter }) {
 			formatter: (cell, row) => {
 				return (
 					<div>
-						<Button variant="none">
+						<Button
+							variant="none"
+							onClick={() => {
+								handleShow(row.trip_id);
+							}}
+						>
 							<FaEdit color="blue" />
 						</Button>
 						<Button
@@ -219,6 +226,15 @@ function TripList({ setFilter, filter }) {
 			},
 		},
 	];
+
+	const [show, setShow] = useState(false);
+	const [currentId, setCurrentId] = useState("");
+
+	const handleClose = () => setShow(false);
+	const handleShow = (id) => {
+		setShow(true);
+		setCurrentId(id);
+	};
 
 	return (
 		<div className="tripList">
@@ -256,6 +272,13 @@ function TripList({ setFilter, filter }) {
 						</Card.Body>
 					</Card>
 				</Container>
+				<EditTripList
+					show={show}
+					handleClose={handleClose}
+					currentId={currentId}
+					getTripList={getTripList}
+					setCurrentId={setCurrentId}
+				/>
 			</div>
 		</div>
 	);
